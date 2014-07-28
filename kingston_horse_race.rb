@@ -22,13 +22,12 @@ class Horse
   attr_accessor :speed
   attr_accessor :distance
   attr_accessor :position
+  attr_accessor :lane
 
   def initialize
-    # puts "A horse has entered the race."
     self.name = ""
     self.speed = 0
     self.distance = 0
-    self.position = 0
 
   end
 
@@ -38,7 +37,6 @@ class Horse
     horse.name = horse_attributes[0]
     horse.speed = rand 3..5
     horse.distance = 0
-    horse.position = 0
     @@list_of_horses.push horse
     horse
   end
@@ -49,7 +47,7 @@ class Horse
   end
 
   def run
-  # Uses the horse objects speed (with a dash modifier) to increment the horse's distance attribute
+  # Uses the horse objects speed (with a random modifier) to increment the horse's distance attribute
     dash = (rand 1..3) - 2
     self.distance += speed + dash
     puts "-"*distance + " " + self.name
@@ -85,29 +83,32 @@ end
 
 def cheating racers, cheat
 # The cheating function takes cheat codes input by the user and then modifies horse objects based on the code string
-  # puts cheat
   case cheat
   when "speed"
-    racers[3].speed = 10
+    racers[-1].speed = 10
     puts "You slip your horse some 'ancient chinese medicine."
   when "ftl"
-    racers[3].speed = 51
+    racers[-1].speed = 51
     puts "Your horse has a jet pack."
   when "head start"
-    racers[3].distance += 5
+    racers[-1].distance += 5
     puts "You somehow manage to jump ahead of the competition."
   when "sabotage"
-    victim = rand 0..2
+    victim = rand 0..(racers.length-2)
     racers[victim].speed = 1
-    puts "You tie #{racers[victim].name}'s legs together"
+    puts "\nYou tie #{racers[victim].name}'s legs together.\n\n"
   when "poison"
-    victims = racers[0..2]
-    victims.sort { |a,b| b.speed <=> a.speed}
-    victim = victims[0]
-    racers.delete_at(racers.index victim)
-    puts "#{victim.name} has died ... murderer."
+    if racers.length > 1
+      victims = racers[0..(racers.length-2)]
+      victims.sort { |a,b| b.speed <=> a.speed}
+      victim = victims[0]
+      racers.delete_at(racers.index victim)
+      puts "\n#{victim.name} has died ... murderer.\n\n"
+    else
+      puts"\nDon't drink that you idiot!\n\n"
+    end
   end
-  # puts racers[3].name
+
 end
 
 # initializing variable to set the go condition
@@ -136,9 +137,6 @@ while race_on
 
   print "\n"
 
-  # p racers
-  # p Horse.display_horses
-
   puts "What is the name of your horse? "
   print "\n"
 
@@ -147,9 +145,6 @@ while race_on
   racers.push Horse.add_horse name
   puts "#{name} has entered the race."
   print "\n"
-
-  # p racers
-  # p Horse.display_horses
 
   # Create another array to keep track of the relative positino of each horse. Also determines winner at end.
   positions = []
@@ -256,7 +251,6 @@ while race_on
     end
 
 end
-
 
 
 
