@@ -1,0 +1,145 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+body { margin: 0; font-family: helvetica; }
+
+div.row {
+  font-size: 0
+}
+
+div.logo {
+  vertical-align: middle;
+  width: 50%;
+  font-size: initial;
+  display: inline-block;
+  font-size: 28;
+}
+
+div.logo img { 
+  max-height: 100% }
+
+a {
+  text-decoration: none;
+}
+
+/*div.header-nav a {
+  display: block;
+}*/
+
+/*div.header-nav a:hover {
+  color: #2290bf;
+  background: #e9e9e9;
+  border-color: #d9d9d9;
+  border: 1px solid #ccc;
+  box-shadow: inset 1px 1px 1em #ccc;
+}*/
+
+
+
+div.header-home, .sub-nav {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 12%;
+  padding: 15px 0 15px 0;
+}
+
+.sub-nav {
+  width: 85%;
+  padding: 0;
+}
+
+div.header-content {
+  padding: 15px 0 15px 0;
+  width: 45%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  color: #fff;
+}
+
+div.header-access {
+  vertical-align: middle;
+  width: 50%;
+  display: block;
+  list-style-type: disc;
+  font-size: initial;
+  display: inline-block;
+  text-align: right;
+}
+
+div.header-nav {
+  color: #555;
+  background-color: #eee;
+  box-shadow: inset 1px 1px 1em #ccc;
+  font-size: 18;
+}
+
+div.header-display {
+  background-image: url(https://g2.twimg.com/about/system/files/styles/hero_3200w_600h/public/about/page/hero/about-frontdoor-hero.jpg);
+  /*background-color: skyblue;*/
+  background-size: auto 100%;
+  box-shadow: inset 1px 1px 1em #333;
+}
+
+
+.header-access li {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 18;
+}
+
+.header-nav li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.header-nav a {
+  display: block;
+  padding: 20px 40px 0px 40px;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 100%
+}
+
+div.header-home a {
+  color: #868686;
+}
+
+div.header-nav a {
+  color: #555;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+h1 {
+  font-size: 64px;
+  margin-bottom: 20px;
+  text-shadow: #333 1px 2px;
+
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 100;
+}
+
+div.header-nav a:hover {
+  color: #2290bf;
+  background: #e9e9e9;
+  border-color: #d9d9d9;
+/*  border: 1px solid #ccc;*/
+  box-shadow: inset 1px 1px 1em #ccc;
+}
+
+button {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+
+
