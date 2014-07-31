@@ -1,0 +1,29 @@
+<title>Embark</title>
+
+<div class="main">
+  <h2><%= @embark_content_header %></h2>
+  <p>Dwarfs:</p>
+  <ol>
+    <% @embark_profile.each do |dorf|%>
+    <li> <%= dorf.name %> /
+      <!-- <ul> -->
+        <% dorf.skills.each do |key, value| %>
+          <!-- <li> -->
+             <%= key %>: <%= value %>
+          <!-- </li> -->
+        <% end %>
+      <!-- </ul> -->
+    </li>
+    <% end %>
+  </ol>
+  <p>Items:</p>
+  <ul>
+    <li>picks 2</li>
+    <li>battle axe 1</li>
+    <li>seeds (12 of each type)</li>
+    <li>booze (36 of each type)</li>
+    <li>cheap meat (1 of each type)</li>
+    <li>leather</li>
+    <li>thread</li>
+  </ul>
+</div>

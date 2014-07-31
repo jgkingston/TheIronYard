@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <div class="parentHead">
+        <div class="headText">
+          <h1>Welcome to The <%= @name %>s </h1>
+          <p>Where losing is fun!</p>
+        </div>
+      <nav class="siteNav">
+        <ul>
+          <li><a href="http://localhost:4567/home">Home</a></li>
+          <li><a href="http://localhost:4567/embark">Embark</a></li>
+          <li><a href="http://localhost:4567/design">Fortress Design</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="backImg">
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+  </div>
+
+  <footer>
+
+    <img src="assets/images/ironYard.png"><p>TheIronYard Copyright 2014, All Rights Reserved</p>
+
+    <ul>
+      <li><a href="http://localhost:4567/home">Home</a></li>
+      <li><a href="http://localhost:4567/embark">Embark</a></li>
+      <li><a href="http://localhost:4567/design">Fortress Design</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
