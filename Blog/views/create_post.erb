@@ -1,0 +1,33 @@
+
+
+
+<div class="col-lg-8">
+<form action="/create_post" method="post">
+  <div class="row">
+    <div class="col-lg-1">
+      <label for="title">Title</label>
+    </div>
+    <div class="col-lg-11">
+      <input type="text" id="title" name="blogpost[title]">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1">
+      <label for="content">Body</label>
+    </div>
+    <div class="col-lg-11">
+      <textarea type="text" id="content" name="blogpost[content]" rows="20" cols="50"></textarea>
+    </div>
+  </div>
+  
+ 
+  
+  
+  <input type="submit" value="Post">
+  <input type="hidden" name="blogpost[timestamp]" value="<%= DateTime.now.strftime("Created on %m/%d/%Y at %T:%M%p") %>">
+
+
+</form>
+<br>
+<a href="/">Back</a>
+</div>

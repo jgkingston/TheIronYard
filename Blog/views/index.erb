@@ -1,0 +1,26 @@
+<% @blogposts.each do |blogpost| %>
+  <div class="col-lg-7 sheet">
+
+    <p class = "h4"><%= blogpost.title %></p>
+
+     
+    <p><%= blogpost.content%></p>
+    <div class="row">
+      <div class="col-lg-10">
+        <p><%= blogpost.timestamp%></p>
+        <p><%= blogpost.lastedit%></p>
+      </div>
+      <div class="col-lg-2">
+      <a class="btn" href="/edit_post/<%= blogpost.id %>">Edit</a>
+    </div>    
+    </div>
+  </div>
+  <div class="col-lg-1"><a class="btn" href="/show_post/<%= blogpost.id %>">Flush</a></div>
+<% end %> 
+<div class="col-lg-5"></div>     
+<div class="col-lg-8">
+  <a class="btn-primary" href="/create_post">Tear Off A New Sheet</a>
+</div>
+
+
+

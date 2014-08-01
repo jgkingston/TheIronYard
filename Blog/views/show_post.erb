@@ -1,0 +1,17 @@
+<div class="col-lg-12">
+  <h3>
+    <%= @blogpost.title %>
+    <br>
+    <%= @blogpost.content%>
+  </h3>
+  <br>
+
+    <form action="/delete_post/<%= @blogpost.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+
+  <br>
+
+  <a href="/">Back</a>
+</div>
