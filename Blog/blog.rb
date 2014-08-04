@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'dm-timestamps'
 
 #Initialize the Database Connection
 DataMapper.setup(
@@ -15,6 +16,8 @@ class Blogpost
   property :content, Text
   property :timestamp, String
   property :lastedit, String
+  property :created_at, DateTime
+  property :updated_at, DateTime
 
 end
 
