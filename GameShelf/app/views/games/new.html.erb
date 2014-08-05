@@ -1,0 +1,22 @@
+<h1>New Game</h1>
+
+<%= form_for @games do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :minplayers %>
+  <%= f.text_field :minplayers %>
+  <br>
+  <%= f.label :maxplayers %>
+  <%= f.text_field :maxplayers %>
+  <br>
+  <%= f.submit "Add Game to Shelf" %>
+
+<% end %>
+
+<br>
+
+<%= link_to "Back", root_path %>
