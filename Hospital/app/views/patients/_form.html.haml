@@ -1,6 +1,7 @@
 
-%div
-  = form_for @patient do |f|
+%div.container
+  %div
+  = form_for [@facility, @patient] do |f|
     - if f.object.errors.messages.length>0
       - f.object.errors.messages.each do | key, value |
         = key.capitalize
@@ -23,5 +24,19 @@
     %br/
     = f.label :description, "Patient Details"
     = f.text_area :description
+    %br/
+    - @medications.each do |medication|
+      = check_box_tag 'patient[medication_ids][]', medication.id, @patient.medications.include?(medication), {id: "medication_id_#{medication.id}"}
+      = label_tag "medication_id_#{medication.id}", medication.name
+      %br
+    / - @patient.prescriptions.each do |prescription|
+    /   = f.fields_for :prescriptions, prescription do |medication_field|
+    /     = medication_field.label prescription.medication.name
+    /     = medication_field.check_box :medication_id
+    /     = medication_field.label prescription.medication.instruction
+    /     = medication_field.text_area :instruction
+
+
+   
     %br/
     = f.submit

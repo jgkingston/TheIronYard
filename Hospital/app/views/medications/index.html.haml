@@ -1,0 +1,21 @@
+%h2 List of Medications
+%table.table
+  %tr
+    %th Name
+    %th
+    %th
+
+  - @medications.each do |medication|
+    %tr
+      %td= link_to medication.name, medication_path(medication)
+
+      %td= link_to "Edit", edit_medication_path(medication)
+
+      %td= link_to "Delete", medication_path(medication), method: :delete
+
+= link_to "Add Medication", new_medication_path
+
+/ def age
+/   now = Time.now.utc
+/   now.year - birthday.year - (birthday.to_time.change(:year => now.year) > now ? 1 : 0)
+/ end

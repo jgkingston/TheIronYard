@@ -7,19 +7,27 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   #rake routes | grep <route_name>
-  resources :patients do
+  resources :facilities do
 
-    member do
-      # put :waiting
-      # put :checkup
-      # put :xray
-      # put :surgery
-      # put :paybill
-      # put :discharge
-      get :transition
+    resources :patients do
+
+      member do
+        # put :waiting
+        # put :checkup
+        # put :xray
+        # put :surgery
+        # put :paybill
+        # put :discharge
+        get :transition
+      end
+
     end
 
   end
+
+  resources :medications
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

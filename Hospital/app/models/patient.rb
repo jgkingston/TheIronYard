@@ -1,6 +1,8 @@
 class Patient < ActiveRecord::Base
 
-  include Workflow
+  belongs_to :facility
+  has_many :prescriptions
+  has_many :medications, through: :prescriptions
 
   validates :lastname, presence: true
   validates :firstname, presence: true
@@ -9,6 +11,7 @@ class Patient < ActiveRecord::Base
   validates_date :dob, :on_or_before => lambda { Date.current }
   validates :description, presence: true
 
+  include Workflow
 
   workflow do
 
@@ -33,7 +36,7 @@ class Patient < ActiveRecord::Base
 
     state :surgery do
       event :examine, transitions_to: :checkup
-      event :operate, transitions_to: :surgery
+      event :scan, transitions_to: :xray
       event :pay, transitions_to: :billing
     end
 

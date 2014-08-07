@@ -1,4 +1,6 @@
 %h2 New Patient Intake Form
 = render 'form'
 
-= link_to "Back", patients_path
+%hr
+
+= link_to "Back", facility_patient_path(@facility, @patient)

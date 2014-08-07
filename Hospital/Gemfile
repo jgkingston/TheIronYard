@@ -32,6 +32,8 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'haml', '~> 4.0.5'
 gem 'workflow'
 
+gem 'quiet_assets'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
