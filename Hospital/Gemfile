@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 # gem 'date_validator', '~> 0.7.0'
 gem 'validates_timeliness', '~> 3.0'
 
+gem 'haml', '~> 4.0.5'
+gem 'workflow'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

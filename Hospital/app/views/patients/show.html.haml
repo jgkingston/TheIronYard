@@ -1,0 +1,27 @@
+%h2
+  = @patient.lastname
+  , #{@patient.firstname}
+%h3
+  Status:
+  = @patient.workflow_state
+%hr/
+= @patient.dob
+= @patient.gender
+%br/
+= @patient.description
+%br/
+= link_to "Edit", edit_patient_path(@patient)
+%br/
+- if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "checkup"
+  = link_to "Examine", transition_patient_path(@patient, event: 'examine')
+- if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "xray"
+  = link_to "Order X-Rays", transition_patient_path(@patient, event: 'scan')
+- if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "surgery"
+  = link_to "Perform Surgery", transition_patient_path(@patient, event: 'operate')
+- if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "waiting"
+  = link_to "Discharge", transition_patient_path(@patient, event: 'pay')
+- if @patient.workflow_state == 'paybill' || @patient.workflow_state == 'waiting'
+  = link_to "Leave", transition_patient_path(@patient, event: 'leave')
+
+
+= link_to "Back", patients_path

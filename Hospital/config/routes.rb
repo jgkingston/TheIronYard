@@ -6,7 +6,20 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :patients
+  #rake routes | grep <route_name>
+  resources :patients do
+
+    member do
+      # put :waiting
+      # put :checkup
+      # put :xray
+      # put :surgery
+      # put :paybill
+      # put :discharge
+      get :transition
+    end
+
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,6 +1,10 @@
 class PatientsController < ApplicationController
 
-  before_action :find_patient, only: [:show, :edit, :update, :destroy]
+  before_action :find_patient, only: [:show, :edit, :update, :destroy, :transition]
+
+  def index
+    @patients = Patient.all
+  end
 
   def show
     
@@ -13,7 +17,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.create patient_params
     if @patient.save == true
-      redirect_to root_path
+      redirect_to patients_path
     else
       render :new
     end
@@ -24,7 +28,7 @@ class PatientsController < ApplicationController
 
   def update
     if @patient.update_attributes patient_params
-      redirect_to root_path
+      redirect_to patients_path
     else
       render :edit
     end
@@ -32,8 +36,24 @@ class PatientsController < ApplicationController
 
   def destroy
     @patient.destroy
-    redirect_to root_path
+    redirect_to patients_path
   end
+ 
+  def transition
+    event = params[:event]+'!'
+    @patient.send(event.to_sym)
+    redirect_to patients_path
+  end
+
+=begin
+  waiting => checkup, xray, surgery, discharge
+  checkup => xray, surgery, paybill
+  xray => checkup, surgery, paybill
+  surgery => checkup, xray, paybill
+  paybill => leaving
+  discharge
+
+=end
 
 private
 
