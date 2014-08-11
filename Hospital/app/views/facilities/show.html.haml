@@ -1,3 +1,4 @@
+
 %h2
   = @facility.name
 %h3
@@ -25,6 +26,24 @@
       %td= link_to "Delete", facility_patient_path(@facility, patient), method: :delete
 
 = link_to "Add Patient", new_facility_patient_path(@facility)
+
+%h2 List of Doctors
+%table.table
+  %tr
+    %th Name
+    %th Specialty
+    %th
+    %th 
+
+  - @facility.doctors.each do |doctor|
+    %tr
+      %td= link_to "Dr. #{doctor.name}", facility_doctor_path(@facility, doctor)
+      %td= doctor.specialty
+      %td= link_to "Edit", edit_facility_doctor_path(@facility,doctor)
+      / %td= link_to "Delete", ward_doctor_path()
+      %td= link_to "Delete", facility_doctor_path(@facility, doctor), method: :delete
+
+= link_to "Add doctor", new_facility_doctor_path(@facility)
 
 %hr
 = link_to "Back", facilities_path

@@ -21,12 +21,21 @@ Rails.application.routes.draw do
         get :transition
       end
 
+      resources :appointments
+
+    end
+
+    resources :doctors do
+
+      resources :appointments
+
     end
 
   end
 
   resources :medications
 
+  
 
 
   # Example of regular route:

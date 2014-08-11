@@ -49,7 +49,7 @@ class MedicationsController < ApplicationController
 private
 
   def find_medication
-    @medication = medication.find params[:id]
+    @medication = Medication.find params[:id]
   end
 
   def medication_params

@@ -1,7 +1,6 @@
-
-
+%div.container
   %div
-  = form_for @facility do |f|
+  = form_for @medication do |f|
     - if f.object.errors.messages.length>0
       - f.object.errors.messages.each do | key, value |
         = key.capitalize
@@ -10,11 +9,6 @@
           %br/
     = f.label :name, "Name"
     = f.text_field :name
-    %br/
-    = f.label :bed, "# of Beds"
-    = f.number_field :bed
-    %br/
-    = f.label :description, "Description"
-    = f.text_area :description
+
     %br/
     = f.submit

@@ -14,13 +14,14 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     @medications = Medication.all
+    @doctors = Doctor.all
   end
 
   def create
     @patient = Patient.create patient_params
     #@patient = @ward.patients.new(patient_params)
     if @patient.save == true
-      redirect_to patients_path
+      redirect_to facility_path(@facility)
     else
       render :new
     end
@@ -28,6 +29,7 @@ class PatientsController < ApplicationController
 
   def edit
     @medications = Medication.all
+    @doctors = Doctor.all
   end
 
   def update
@@ -61,8 +63,16 @@ private
     @facility = Facility.find params[:facility_id]
   end
 
+  # def find_prescriptions
+  #   @prescription = Prescription.find params[:]
+  # end
+
+  # def find_appointments
+
+  # end
+
   def patient_params
-    params.require(:patient).permit(:lastname, :firstname, :description, :dob, :gender, {medication_ids: []})
+    params.require(:patient).permit(:lastname, :firstname, :description, :dob, :gender, :facility_id, {medication_ids: []}, {doctor_ids: []})
 
   end
 end

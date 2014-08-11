@@ -1,4 +1,4 @@
-%div.container
+%div
   %h2
     = @facility.name
 
@@ -13,7 +13,7 @@
     = link_to "Edit Patient Information", edit_facility_patient_path(@facility, @patient)
   %hr/
 
-%div.container
+%div
   %h4
     Status:
     = @patient.workflow_state
@@ -40,16 +40,17 @@
         = link_to "Leave", transition_facility_patient_path(@facility, @patient, event: 'leave')
 
 
-%div.container
+%div
   %table.table
     %tr
       %th Current Medications
+      / %th
       %th Instructions
-      %th
 
     - @patient.prescriptions.each do |prescription|   
       %tr
         %td= prescription.medication.name
+        / %td= prescription.medication_id
         %td= prescription.instruction
 
 
@@ -58,12 +59,12 @@
 
 
 
-%div.container
+%div
   %h4 Patient Details:
   %p
     = @patient.description
 
-%div.container
+%div
   %p= link_to "Back", facility_path(@facility)
 
 

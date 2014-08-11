@@ -1,0 +1,39 @@
+%div.container
+  %h2
+    = @facility.name
+
+  %h3
+    = @doctor.name
+    |
+    =@doctor.specialty
+
+  %br
+    = link_to "Edit Doctor Information", edit_facility_doctor_path(@facility, @doctor)
+  %hr/
+
+
+%div.container
+  %h3 Appointments
+  %table.table
+    %tr
+      %th Patient Name
+      %th Time
+      %th
+
+    - @doctor.appointments.each do |appointment|   
+      %tr
+        %td= "#{appointment.patient.lastname}, #{appointment.patient.firstname}"
+        %td= appointment.when
+
+
+/ - form_for [@patient, @medications, @prescription] do |f|
+/   = f.select
+
+
+
+%div.container
+  %p= link_to "Back", facility_path(@facility)
+
+
+
+

@@ -3,6 +3,8 @@ class Patient < ActiveRecord::Base
   belongs_to :facility
   has_many :prescriptions
   has_many :medications, through: :prescriptions
+  has_many :appointments
+  has_many :doctors, through: :appointments
 
   validates :lastname, presence: true
   validates :firstname, presence: true
