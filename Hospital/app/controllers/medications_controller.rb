@@ -4,6 +4,11 @@ class MedicationsController < ApplicationController
 
   def index
     @medications = Medication.all
+    if params[:search]
+      @medications = Medication.search(params[:search]).order("created_at DESC")
+    else
+      @medications = Medication.all.order('created_at DESC')
+    end
   end
 
   def show

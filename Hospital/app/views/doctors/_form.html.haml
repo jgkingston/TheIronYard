@@ -18,11 +18,11 @@
     / = f.number_field :facility_id, value: @facility.id
     = f.hidden_field :facility_id, value: @facility.id
 
-    %h4 Schedule Appointment
-    - @patients.each do |patient|
-      = check_box_tag 'doctor[patient_ids][]', patient.id, @doctor.patients.include?(patient), {id: "patient_id_#{patient.id}"}
-      = label_tag "patient_id_#{patient.id}", "#{patient.lastname}, #{patient.firstname}"
-      %br
+    / %h4 Schedule Appointment
+    / - @patients.each do |patient|
+    /   = check_box_tag 'doctor[patient_ids][]', patient.id, @doctor.patients.include?(patient), {id: "patient_id_#{patient.id}"}
+    /   = label_tag "patient_id_#{patient.id}", "#{patient.lastname}, #{patient.firstname}"
+    /   %br
 
 
     / - @doctor.prescriptions.each do |prescription|

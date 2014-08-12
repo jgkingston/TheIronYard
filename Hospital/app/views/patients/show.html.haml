@@ -9,13 +9,19 @@
     =@patient.gender
     |
     = "#{((Date.today - @patient.dob)/365.25).round(0)}"
+  
+
+  %div
+    %h4 Patient Details:
+    %p
+      = @patient.description
   %br
-    = link_to "Edit Patient Information", edit_facility_patient_path(@facility, @patient)
+  = link_to "Edit Patient Information", edit_facility_patient_path(@facility, @patient)
   %hr/
 
 %div
   %h4
-    Status:
+    Patient Status:
     = @patient.workflow_state
     %br
 
@@ -49,20 +55,41 @@
 
     - @patient.prescriptions.each do |prescription|   
       %tr
-        %td= prescription.medication.name
+        %td= link_to prescription.medication.name, edit_facility_patient_prescription_path(@facility, @patient, prescription)
         / %td= prescription.medication_id
         %td= prescription.instruction
+
+%div
+  %table.table
+    %tr
+      %th Appointments
+      %th Doctors
+      %th
+      %th
+
+    - @patient.appointments.each do |appointment|   
+      %tr
+        %td= "At #{appointment.when.strftime("%l:%M %p")} on #{appointment.when.strftime("%m/%d/%Y")}"
+        %td= link_to appointment.doctor.name, facility_doctor_path(@facility, appointment.doctor_id)
+        %td
+        %td= link_to "Delete", appointment_path(appointment, :scheduler_type => "patient", :scheduler_id => @patient.id), method: :delete
+        
+
+%div
+  = form_for @appointment, :url => appointments_path(:scheduler_type => "patient", :scheduler_id => @patient.id) do |f|
+    = f.label :doctor_id, "Select Doctor"
+    = f.select :doctor_id,
+      options_for_select( @facility.doctors.collect {|doctor| [doctor.name, doctor.id]} )
+    %br
+    = f.label :when, "Select Time"
+    = f.datetime_select :when
+    %br
+    = f.submit
 
 
 / - form_for [@patient, @medications, @prescription] do |f|
 /   = f.select
 
-
-
-%div
-  %h4 Patient Details:
-  %p
-    = @patient.description
 
 %div
   %p= link_to "Back", facility_path(@facility)

@@ -21,19 +21,21 @@ Rails.application.routes.draw do
         get :transition
       end
 
-      resources :appointments
+      resources :prescriptions
 
     end
 
-    resources :doctors do
+    resources :doctors
 
-      resources :appointments
-
-    end
 
   end
 
+
   resources :medications
+
+  resources :appointments
+
+ 
 
   
 

@@ -18,12 +18,13 @@
     %tr
       %th Patient Name
       %th Time
-      %th
+      %th Date
 
     - @doctor.appointments.each do |appointment|   
       %tr
-        %td= "#{appointment.patient.lastname}, #{appointment.patient.firstname}"
-        %td= appointment.when
+        %td= link_to "#{appointment.patient.lastname}, #{appointment.patient.firstname}", facility_patient_path(@facility, appointment.patient_id)
+        %td= appointment.when.strftime("%l:%M %p")
+        %td= appointment.when.strftime("%m/%d/%Y")
 
 
 / - form_for [@patient, @medications, @prescription] do |f|

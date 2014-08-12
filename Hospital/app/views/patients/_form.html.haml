@@ -1,5 +1,5 @@
 
-%div.container
+%div
   %div
   = form_for [@facility, @patient] do |f|
     - if f.object.errors.messages.length>0
@@ -32,11 +32,11 @@
       = check_box_tag 'patient[medication_ids][]', medication.id, @patient.medications.include?(medication), {id: "medication_id_#{medication.id}"}
       = label_tag "medication_id_#{medication.id}", medication.name
       %br
-    %h4 Make Appointment
-    - @doctors.each do |doctor|
-      = check_box_tag 'patient[doctor_ids][]', doctor.id, @patient.doctors.include?(doctor), {id: "doctor_id_#{doctor.id}"}
-      = label_tag "doctor_id_#{doctor.id}", doctor.name
-      %br
+    / %h4 Make Appointment
+    / - @doctors.each do |doctor|
+    /   = check_box_tag 'patient[doctor_ids][]', doctor.id, @patient.doctors.include?(doctor), {id: "doctor_id_#{doctor.id}"}
+    /   = label_tag "doctor_id_#{doctor.id}", doctor.name
+    /   %br
     / - @patient.prescriptions.each do |prescription|
     /   = f.fields_for :prescriptions, prescription do |medication_field|
     /     = medication_field.label prescription.medication.name

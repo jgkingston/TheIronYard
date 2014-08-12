@@ -1,7 +1,10 @@
-%div.container
+%div
   %h1 Welcome
-  %ul
-    %li
-      = link_to "List of Hospitals", facilities_path
-    %li
-      = link_to "List of Medications", medications_path
+  %ul.list-inline
+    %li.btn
+      %h2
+        = link_to "Hospitals", facilities_path
+    %li.btn
+    %li.btn
+      %h2
+        = link_to "Medications", medications_path

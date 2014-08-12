@@ -1,4 +1,11 @@
 %h2 List of Medications
+
+
+= form_tag(medications_path, :method => "get", id: "search-form") do
+  = text_field_tag :search, params[:search], placeholder: "Search Medications"
+  = submit_tag "Search", :name => nil
+
+
 %table.table
   %tr
     %th Name

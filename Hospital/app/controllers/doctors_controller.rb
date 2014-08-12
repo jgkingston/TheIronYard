@@ -41,7 +41,7 @@ class DoctorsController < ApplicationController
 
   def destroy
     @doctor.destroy
-    redirect_to doctors_path
+    redirect_to facility_path
   end
  
   def transition

@@ -1,0 +1,6 @@
+%div
+= form_for @appointment do |f|
+
+  = f.select field
+  = f.label :when
+  = f.datetime_select :when
