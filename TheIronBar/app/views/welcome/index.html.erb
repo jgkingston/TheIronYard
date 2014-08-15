@@ -1,0 +1,17 @@
+
+<%= link_to "Add Food", new_food_path %>
+<%= link_to "Add Drink", new_drink_path %>
+
+<h2>Menu</h2>
+<ul><h3>Food</h3>
+  <% @foods.each do |food| %>
+    <li><%= food.name %> | $ <%= food.cost %> | <%= link_to "Edit", edit_food_path(food) %></li>    
+  <% end %>
+</ul>
+
+<ul><h3>Drinks</h3>
+  <% @drinks.each do |drink| %>
+    <li><%= drink.name %> | $ <%= drink.cost %> | <%= link_to "Edit", edit_drink_path(drink) %></li>
+  <% end %>
+</ul>
+

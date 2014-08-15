@@ -1,0 +1,14 @@
+%div.container
+  %div
+  = form_for @medication do |f|
+    - if f.object.errors.messages.length>0
+      - f.object.errors.messages.each do | key, value |
+        = key.capitalize
+        - value.each do |message|
+          = message
+          %br/
+    = f.label :name, "Name"
+    = f.text_field :name
+
+    %br/
+    = f.submit

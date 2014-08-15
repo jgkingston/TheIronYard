@@ -1,0 +1,38 @@
+
+%div.container
+  %div
+  = form_for [@facility, @doctor] do |f|
+    - if f.object.errors.messages.length>0
+      - f.object.errors.messages.each do | key, value |
+        = key.capitalize
+        - value.each do |message|
+          = message
+          %br/
+    = f.label :name, "Name"
+    = f.text_field :name
+    %br
+    = f.label :specialty, "Specialty"
+    = f.text_field :specialty
+    %br
+    / = f.label :facility_id
+    / = f.number_field :facility_id, value: @facility.id
+    = f.hidden_field :facility_id, value: @facility.id
+
+    / %h4 Schedule Appointment
+    / - @patients.each do |patient|
+    /   = check_box_tag 'doctor[patient_ids][]', patient.id, @doctor.patients.include?(patient), {id: "patient_id_#{patient.id}"}
+    /   = label_tag "patient_id_#{patient.id}", "#{patient.lastname}, #{patient.firstname}"
+    /   %br
+
+
+    / - @doctor.prescriptions.each do |prescription|
+    /   = f.fields_for :prescriptions, prescription do |medication_field|
+    /     = medication_field.label prescription.medication.name
+    /     = medication_field.check_box :medication_id
+    /     = medication_field.label prescription.medication.instruction
+    /     = medication_field.text_area :instruction
+
+
+   
+    %br/
+    = f.submit

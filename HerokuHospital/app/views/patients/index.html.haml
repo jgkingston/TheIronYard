@@ -1,0 +1,26 @@
+%h2 List of Patients
+%table.table
+  %tr
+    %th Name
+    %th Age
+    %th Gender
+    %th Status
+    %th
+    %th 
+
+  - @patients.each do |patient|
+    %tr
+      %td= link_to "#{patient.lastname}, #{patient.firstname}", patient_path(patient)
+      %td= "#{((Date.today - patient.dob)/365.25).round(0)}"
+      %td= patient.gender
+      %td= patient.workflow_state
+      %td= link_to "Edit", edit_facility_patient_path(patient)
+      / %td= link_to "Delete", ward_patient_path()
+      %td= link_to "Delete", facility_patient_path(patient), method: :delete
+
+= link_to "Add Patient", new_facility_patient_path
+
+/ def age
+/   now = Time.now.utc
+/   now.year - birthday.year - (birthday.to_time.change(:year => now.year) > now ? 1 : 0)
+/ end

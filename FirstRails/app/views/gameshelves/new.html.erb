@@ -1,0 +1,16 @@
+<h1>New Game</h1>
+
+<%= form_for @gameshelves do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :players %>
+  <%= f.text_field :players %>
+  <br>
+  <%= f.label :playtime %>
+  <%= f.text_field :playtime %>
+  <br>
+  <%= f.submit "Add Game"%>
+<% end %>
+<br>
+<%= link_to "Back", root_path %>

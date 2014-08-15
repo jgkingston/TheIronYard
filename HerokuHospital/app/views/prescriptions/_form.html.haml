@@ -1,0 +1,14 @@
+%div
+  %div
+  = form_for [@facility, @patient, @prescription] do |f|
+    - if f.object.errors.messages.length>0
+      - f.object.errors.messages.each do | key, value |
+        = key.capitalize
+        - value.each do |message|
+          = message
+          %br/
+    = @prescription.medication.name
+    = f.label :instruction, "Instructions"
+    = f.text_field :instruction
+    %br/
+    = f.submit

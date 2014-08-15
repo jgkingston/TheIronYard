@@ -12,12 +12,6 @@ Rails.application.routes.draw do
     resources :patients do
 
       member do
-        # put :waiting
-        # put :checkup
-        # put :xray
-        # put :surgery
-        # put :paybill
-        # put :discharge
         get :transition
       end
 

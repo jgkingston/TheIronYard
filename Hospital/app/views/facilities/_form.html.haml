@@ -8,13 +8,14 @@
       - value.each do |message|
         = message
         %br/
-  = f.label :name, "Name"
-  = f.text_field :name
-  %br/
-  = f.label :bed, "# of Beds"
-  = f.number_field :bed
-  %br/
-  = f.label :description, "Description"
-  = f.text_area :description
-  %br/
-  = f.submit
+  .form-group
+    = f.label :name, "Name"
+    = f.text_field :name, class: "form-control"
+    %br/
+    = f.label :bed, "# of Beds"
+    = f.number_field :bed, class: "form-control"
+    %br/
+    = f.label :description, "Description"
+    = f.text_area :description, class: "form-control"
+    %br/
+    = f.submit

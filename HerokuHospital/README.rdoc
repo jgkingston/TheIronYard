@@ -1,0 +1,51 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+*********************************************************
+We are creating a tracking system for a patient as he/she goes through a hospital. Today you will create the basic CRUD.
+
+First name (Text field)
+Last name (Text field)
+Date of Birth (date selector field)
+Description (text field - Will be a description of why the patient is at the hospital)
+Gender (Radio button)
+All of these fields are required! Date is required to be in the past.
+********************************************************
+
+Use the Workflow gem we used today to control patient statuses.
+The patient will be transferred from the waiting room, to doctor checkup, to xrays, to surgery, to paying bills, to leaving.
+The patients should be able to jump directly from the waiting room to every status except paying bills
+This will involve multiple events for each state!
+I also strongly suggest making 1 route that controls transferring between all states. If you do so, it should accept the previous and state wanted as parameters
+As the patient transfers to leaving the hospital, I want to be presented with a description field to write any details about said patient's trip through the hospital.
+Use HAML!
+Make it look nice.
+You don't have to go all out, but at least make it somewhat presentable.
+
+*********************************************************
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

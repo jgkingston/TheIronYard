@@ -1,0 +1,22 @@
+
+<%= form_for @food do |f| %>
+  <% if f.object.errors.messages.length>0 %>
+    
+    <% f.object.errors.messages.each do | key, value | %>
+      <%= key.capitalize %>
+      <% value.each do |message| %>
+        <%= message %>
+      <% end %>
+      <br>
+    <% end %>
+  <% end %>
+  <br>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <br>
+  <%= f.submit%>
+
+<% end %>

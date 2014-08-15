@@ -1,0 +1,14 @@
+<h2>Edit Game Details</h2>
+
+<%= link_to "Back", root_path %>
+
+  <%=  form_for @gameshelf do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :players %>
+  <%= f.text_field :players %>
+  <%= f.label :playtime %>
+  <%= f.text_field :playtime %>
+  <%= f.submit "Edit" %>
+
+<% end %>

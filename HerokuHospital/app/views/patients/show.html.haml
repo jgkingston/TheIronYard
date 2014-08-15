@@ -1,0 +1,99 @@
+%div
+  %h2
+    = @facility.name
+
+  %h3
+    = "#{@patient.lastname + ","}" 
+    #{@patient.firstname}
+    |
+    =@patient.gender
+    |
+    = "#{((Date.today - @patient.dob)/365.25).round(0)}"
+  
+
+  %div
+    %h4 Patient Details:
+    %p
+      = @patient.description
+  %br
+  = link_to "Edit Patient Information", edit_facility_patient_path(@facility, @patient)
+  %hr/
+
+%div
+  %h4
+    Patient Status:
+    = @patient.workflow_state
+    %br
+
+  Available Actions:
+
+  %ul.list-inline
+
+    %li
+      - if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "checkup"
+        = link_to "Examine", transition_facility_patient_path(@facility, @patient, event: 'examine')
+    %li
+      - if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "xray"
+        = link_to "Order X-Rays", transition_facility_patient_path(@facility, @patient, event: 'scan')
+    %li
+      - if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "surgery"
+        = link_to "Perform Surgery", transition_facility_patient_path(@facility, @patient, event: 'operate')
+    %li
+      - if @patient.workflow_state != 'paybill' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "waiting"
+        = link_to "Discharge", transition_facility_patient_path(@facility, @patient, event: 'pay')
+    %li
+      - if @patient.workflow_state == 'paybill' || @patient.workflow_state == 'waiting'
+        = link_to "Leave", transition_facility_patient_path(@facility, @patient, event: 'leave')
+
+
+%div
+  %table.table
+    %tr
+      %th Current Medications
+      / %th
+      %th Instructions
+
+    - @patient.prescriptions.each do |prescription|   
+      %tr
+        %td= link_to prescription.medication.name, edit_facility_patient_prescription_path(@facility, @patient, prescription)
+        / %td= prescription.medication_id
+        %td= prescription.instruction
+
+%div
+  %table.table
+    %tr
+      %th Appointments
+      %th Doctors
+      %th
+      %th
+
+    - @patient.appointments.each do |appointment|   
+      %tr
+        %td= "At #{appointment.when.strftime("%l:%M %p")} on #{appointment.when.strftime("%m/%d/%Y")}"
+        %td= link_to appointment.doctor.name, facility_doctor_path(@facility, appointment.doctor_id)
+        %td
+        %td= link_to "Delete", appointment_path(appointment, :scheduler_type => "patient", :scheduler_id => @patient.id), method: :delete
+        
+
+%div
+  = form_for @appointment, :url => appointments_path(:scheduler_type => "patient", :scheduler_id => @patient.id) do |f|
+    = f.label :doctor_id, "Select Doctor"
+    = f.select :doctor_id,
+      options_for_select( @facility.doctors.collect {|doctor| [doctor.name, doctor.id]} )
+    %br
+    = f.label :when, "Select Time"
+    = f.datetime_select :when
+    %br
+    = f.submit
+
+
+/ - form_for [@patient, @medications, @prescription] do |f|
+/   = f.select
+
+
+%div
+  %p= link_to "Back", facility_path(@facility)
+
+
+
+

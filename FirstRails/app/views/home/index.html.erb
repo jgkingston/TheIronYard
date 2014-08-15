@@ -1,0 +1,15 @@
+<h1>Games on my shelf</h1>
+
+<% @gameshelves.each do |game| %>
+<%= link_to game.title, gameshelf_path(game) %>
+|
+<%= game.players %>
+|
+<%= game.playtime %>
+|
+<%= link_to "Edit", edit_gameshelf_path(game)%>
+|
+<%= link_to "Delete", gameshelf_path(game), method: :delete %>
+<% end %>
+<br>
+<%= link_to "New Game", new_gameshelf_path %>

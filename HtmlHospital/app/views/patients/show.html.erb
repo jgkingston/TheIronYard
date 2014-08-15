@@ -1,0 +1,11 @@
+<h2> <%= @patient.lastname %>, <%= @patient.firstname %> </h2>
+<hr>
+<%= @patient.dob %>
+<%= @patient.gender %>
+<br>
+<%= @patient.description %>
+<br>
+<%= link_to "Edit", edit_patient_path(@patient) %>
+<br>
+<%= link_to "Home", root_path %>
+<%= link_to "Back", patients_path %>
