@@ -21,5 +21,6 @@ module Hospital
     # config.i18n.default_locale = :de
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
     # config.assets.path << "#{Rails}/vendor/assets/fonts"
+    config.assets.initialize_on_precompile = false
   end
 end

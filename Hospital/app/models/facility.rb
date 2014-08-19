@@ -7,4 +7,8 @@ class Facility < ActiveRecord::Base
   validates :description, presence: true
   validates :bed, presence: true
 
+  def self.search query
+    where("name like ?", "%#{query}%") 
+  end
+
 end

@@ -1,9 +1,15 @@
 class FacilitiesController < ApplicationController
 
- before_action :find_facility, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index]
+  before_action :find_facility, only: [:show, :edit, :update, :destroy]
 
   def index
     @facilities = Facility.all
+     if params[:search]
+      @medications = Facility.search(params[:search]).order("created_at DESC")
+    else
+      @medications = Facility.all.order('created_at DESC')
+    end
   end
 
   def show
