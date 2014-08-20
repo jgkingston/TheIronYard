@@ -2,15 +2,15 @@
 %html
   %head
     %title Hospital
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     .container
       .header
         %ul.nav.nav-pills.pull-right
           %li.active
-            %a{:href => "#"} Home
+            %a{:href => "/"} Home
           %li
             %a{:href => "#"} About
           %li
@@ -19,8 +19,10 @@
   
   %div.wrapper
     %div.container
-      %p.notice= notice
-      %p.alert= alert
+      - flash.each do |key, value|
+        - p key
+        %div{class: "#{flash_class(key)}"}
+          = value
       = yield
     
   %div.footer

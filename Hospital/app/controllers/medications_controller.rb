@@ -24,6 +24,7 @@ class MedicationsController < ApplicationController
     #@medication = @ward.medications.new(medication_params)
     if @medication.save == true
       redirect_to medications_path
+      flash[:success] = "Medication successfully added."
     else
       render :new
     end

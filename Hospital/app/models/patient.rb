@@ -46,6 +46,8 @@ class Patient < ActiveRecord::Base
       event :leave, transitions_to: :discharge
     end
 
+    state :discharge
+
   end
 
 

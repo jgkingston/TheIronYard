@@ -15,15 +15,25 @@
     %th
     %th 
 
-  - @facility.patients.each do |patient|
-    %tr
-      %td= link_to "#{patient.lastname}, #{patient.firstname}", facility_patient_path(@facility, patient)
-      %td= "#{((Date.today - patient.dob)/365.25).round(0)}"
-      %td= patient.gender
-      %td= patient.workflow_state
-      %td= link_to "Edit", edit_facility_patient_path(@facility,patient)
-      / %td= link_to "Delete", ward_patient_path()
-      %td= link_to "Delete", facility_patient_path(@facility, patient), method: :delete
+  - group_id = 0
+  - @facility.patients.each_slice(10) do |patient_group|
+    - group_id += 1
+    - patient_group.each do |patient|
+      %tr{ class: "slice group_#{group_id} #{'hidden' if group_id > 1}" }
+        %td= link_to "#{patient.lastname}, #{patient.firstname}", facility_patient_path(@facility, patient)
+        %td= "#{((Date.today - patient.dob)/365.25).round(0)}"
+        %td= patient.gender
+        %td= patient.workflow_state
+        %td= link_to "Edit", edit_facility_patient_path(@facility,patient)
+        / %td= link_to "Delete", ward_patient_path()
+        %td= link_to "Delete", facility_patient_path(@facility, patient), method: :delete
+%div.text-center
+  %ol.list-inline
+    - group_id = 0
+    - @facility.patients.each_slice(10) do |slice|
+      - group_id += 1
+      %li
+        %a.paginator= group_id
 
 = link_to "Add Patient", new_facility_patient_path(@facility)
 

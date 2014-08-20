@@ -23,7 +23,8 @@ class FacilitiesController < ApplicationController
   def create
     @facility = Facility.create facility_params
     if @facility.save == true
-      redirect_to facility_params
+      redirect_to facilities_path
+      flash[:success] = "Facility successfully added."
     else
       render :new
     end

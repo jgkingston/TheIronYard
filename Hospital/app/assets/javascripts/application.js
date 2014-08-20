@@ -15,3 +15,12 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+var alertFader = function() {
+
+  $('.alert').fadeOut(3000)
+
+}
+
+$(document).ready(alertFader);
+$(document).on("page:load", alertFader);

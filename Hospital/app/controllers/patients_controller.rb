@@ -19,10 +19,12 @@ class PatientsController < ApplicationController
   end
 
   def create
+    @medications = Medication.all
     @patient = Patient.create patient_params
     #@patient = @ward.patients.new(patient_params)
     if @patient.save == true
       redirect_to facility_path(@facility)
+      flash[:success] = "Patient successfully added."
     else
       render :new
     end

@@ -1,32 +1,31 @@
-
-%div
-  %div
-  = form_for [@facility, @patient] do |f|
+%div.input-group 
+  = form_for [@facility, @patient], html: {class: 'validation-form'} do |f|
     - if f.object.errors.messages.length>0
       - f.object.errors.messages.each do | key, value |
         = key.capitalize
         - value.each do |message|
           = message
           %br/
-    = f.label :lastname, "Last Name"
-    = f.text_field :lastname
-    = f.label :firstname, "First Name"
-    = f.text_field :firstname
-    %br/
-    = f.label :gender, "Gender"
-    = f.radio_button :gender, 'Male' 
+    = f.label :lastname, "Last Name", class: "control-label"
+    = f.text_field :lastname, class: "form-control last-name-input", autofocus: true
+    %p.last.requirement * required field
+    = f.label :firstname, "First Name"    
+    = f.text_field :firstname, class: "form-control first-name-input"
+    %p.first.requirement * required field
+    = f.label :gender, "Gender", class: "radio form-inline"
+    = f.radio_button :gender, 'Male'
     Male
-    = f.radio_button :gender, 'Female' 
+    = f.radio_button :gender, 'Female'
     Female
-    %br/
+    %br
     = f.label :dob, "Date of Birth"
     = f.date_select(:dob, start_year: 1900, end_year: 2014 )
-    %br/
+    %br
     = f.label :description, "Patient Details"
-    = f.text_area :description
-    %br/
+    = f.text_area :description, class: "form-control"
+    %br
     = f.hidden_field :facility_id, value: @facility.id
-    %br/
+    %br
     %h4 Prescribe Medicine
     - @medications.each do |medication|
       = check_box_tag 'patient[medication_ids][]', medication.id, @patient.medications.include?(medication), {id: "medication_id_#{medication.id}"}
@@ -47,4 +46,4 @@
 
    
     %br/
-    = f.submit
+    = f.submit "Create Patient", class: 'submit'
