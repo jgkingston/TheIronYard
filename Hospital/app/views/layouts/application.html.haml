@@ -16,16 +16,19 @@
           %li
             %a{:href => "#"} Contact
         %h3.text-muted Fallout Health
-  
-  %div.wrapper
-    %div.container
-      - flash.each do |key, value|
-        - p key
-        %div{class: "#{flash_class(key)}"}
-          = value
-      = yield
-    
-  %div.footer
-    %ul.list-inline
-      %li 
-        = link_to "Home", root_path
+    / .parallax
+    /   .parallax__layer.parallax__layer--back
+    /     =image_tag 'http://wallpoper.com/images/00/42/35/57/ruins-post-apocalyptic_00423557.jpg'
+    /   .parallax__layer.parallax__layer--base
+        
+
+    %div.wrapper
+      %div
+        - flash.each do |key, value|
+          - p key
+          %div{class: "#{flash_class(key)}"}
+            = value
+        = yield
+
+    %div.footer
+      %p © Company 2014

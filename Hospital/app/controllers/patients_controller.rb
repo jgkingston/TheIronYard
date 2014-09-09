@@ -6,6 +6,10 @@ class PatientsController < ApplicationController
 
   def index
     @patients = Patient.all
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def show
@@ -52,7 +56,11 @@ class PatientsController < ApplicationController
   def transition
     event = params[:event]+'!'
     @patient.send(event.to_sym)
-    redirect_to facility_patient_path(@facility, @patient)
+    respond_to do |format|
+      format.js
+      format.html
+    end
+    # redirect_to facility_patient_path(@facility, @patient)
   end
 
 private

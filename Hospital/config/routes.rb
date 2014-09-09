@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :appointments
 
+  get '/patients' => 'patients#search_patients'
  
 
   

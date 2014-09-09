@@ -50,6 +50,9 @@ class Patient < ActiveRecord::Base
 
   end
 
+  def self.search query
+    where("lastname like ?", "%#{query}%") 
+  end
 
 
 end

@@ -13,7 +13,16 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    
+    # if params[:search]
+    #   @patients = @facility.patients.search(params[:search]).order("created_at DESC")
+    # else
+    #   @patients = @facility.patients.all.order('created_at DESC')
+    # end
+    @patients = @facility.patients.where("lastname LIKE ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def new
@@ -39,6 +48,14 @@ class FacilitiesController < ApplicationController
       redirect_to facilities_path
     else
       render :edit
+    end
+  end
+
+  def search_patients
+    @patients = Patient.where("lastname LIKE ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+      format.html
     end
   end
 

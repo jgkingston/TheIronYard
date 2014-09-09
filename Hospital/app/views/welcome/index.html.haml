@@ -1,61 +1,49 @@
-%div
-  .jumbotron
-    %h1 The Right Hospital
-    %p.lead Your risk of complications and death can be many times higher at one hospital than at another just across the rift.  Here’s what you need to know to find the right hospital:
-    .text-left
-      %ol.breadcrumb
-        %li 
-          %span.h4 Doctors and Hospitals are Linked: 
-          Doctors are micro-chipped and are not permitted to go off site — so when you choose a doctor, you are choosing a hospital.
-        %li 
-          %span.h4 Care Quality Varies. A Lot: 
-          Some hospitals deliver significantly better care than others when it comes to specific mutations and enhancements.
-        %li
-          %span.h4 You Can Minimize Risk: 
-          If you need hospital care, use our industry-leading ratings to make sure your doctor can treat members of your genus/species. The difference to your health can be dramatic.
-    / %p
-    /   %a.btn.btn-lg.btn-success{:href => "#", :role => "button"} Sign up today
-    = form_tag(root_path, method: :get, id: "search-form") do
-      = text_field_tag :search, params[:search], placeholder: "Hospital Name (Optional)", size: 75
-      = submit_tag "Search", :name => nil
-  %div
-    %table.table
-      %tr
-        %th Name
+.parallax
+  .parallax__layer.parallax__layer--back
+    =image_tag 'http://wallpoper.com/images/00/42/35/57/ruins-post-apocalyptic_00423557.jpg'
+  .parallax__layer.parallax__layer--base
 
-      - @facilities.each do |facility|
-        %tr
-          %td= link_to facility.name, facility_path(facility)
+    %div.container
+      .jumbotron
+        %h1 The Right Hospital
+        %p.lead Your risk of complications and death can be many times higher at one hospital than at another just across the rift.  Here’s what you need to know to find the right hospital:
+        .text-left
+          %ol.breadcrumb
+            %li 
+              %span.h4 Doctors and Hospitals are Linked: 
+              Doctors are micro-chipped and are not permitted to go off site — so when you choose a doctor, you are choosing a hospital.
+            %li 
+              %span.h4 Care Quality Varies. A Lot: 
+              Some hospitals deliver significantly better care than others when it comes to specific mutations and enhancements.
+            %li
+              %span.h4 You Can Minimize Risk: 
+              If you need hospital care, use our industry-leading ratings to make sure your doctor can treat members of your genus/species. The difference to your health can be dramatic.
+        / %p
+        /   %a.btn.btn-lg.btn-success{:href => "#", :role => "button"} Sign up today
+        = form_tag(root_path, method: :get, id: "search-form") do
+          = text_field_tag :search, params[:search], placeholder: "Hospital Name (Optional)", size: 75
+          = submit_tag "Search", :name => nil
+      %div
+        %table.table
+          %tr
+            %th Name
 
-  .row.marketing
-    .col-lg-6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
-    .col-lg-6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
-  .footer
-    %p © Company 2014
-/ /container
-/
-  Bootstrap core JavaScript
-  \==================================================
-/ Placed at the end of the document so the pages load faster
+          - @facilities.each do |facility|
+            %tr
+              %td= link_to facility.name, facility_path(facility)
 
-%h1 Welcome
-%ul.list-inline
-  %li.btn.btn-lg
-    %h2
-      = link_to "Hospitals", facilities_path
-  %li.btn
-  %li.btn.btn-lg
-    %h2
-      = link_to "Medications", medications_path
+    / /container
+    /
+      Bootstrap core JavaScript
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+
+    %h1 Welcome
+    %ul.list-inline
+      %li.btn.btn-lg
+        %h2
+          = link_to "Hospitals", facilities_path
+      %li.btn
+      %li.btn.btn-lg
+        %h2
+          = link_to "Medications", medications_path

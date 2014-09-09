@@ -1,8 +1,42 @@
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.parallax {
+  perspective: 1px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+.parallax__layer {
+  padding: 5vh 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  padding-top: 0;
+  /*background-image: url('http://wallpoper.com/images/00/42/35/57/ruins-post-apocalyptic_00423557.jpg');*/
+  background-repeat: no-repeat;
+  width: 100%;
+  /*background-size: auto 100%;*/
+  background-position: center top;
+  /*background-attachment: fixed;*/
+  transform: translateZ(-2px) scale(3);
+}
+
+.parallax__layer--back img {
+
+}
+
+.background-image {
+  background: url('http://wallpoper.com/images/00/42/35/57/ruins-post-apocalyptic_00423557.jpg') 0 0 no-repeat;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0),  rgba(0, 0, 0, 1));
+  background-attachment: fixed;
+}
+
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -14,6 +48,7 @@ body {
 
 /* Custom page header */
 .header {
+  margin-top: 10px;
   border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
@@ -70,7 +105,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {

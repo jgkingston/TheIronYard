@@ -10,15 +10,15 @@
 
   - @patients.each do |patient|
     %tr
-      %td= link_to "#{patient.lastname}, #{patient.firstname}", patient_path(patient)
+      %td= link_to "#{patient.lastname}, #{patient.firstname}", facility_patient_path(@facility, patient)
       %td= "#{((Date.today - patient.dob)/365.25).round(0)}"
       %td= patient.gender
       %td= patient.workflow_state
-      %td= link_to "Edit", edit_facility_patient_path(patient)
+      %td= link_to "Edit", edit_facility_patient_path(@facility, patient)
       / %td= link_to "Delete", ward_patient_path()
-      %td= link_to "Delete", facility_patient_path(patient), method: :delete
+      %td= link_to "Delete", facility_patient_path(@facility, patient), method: :delete
 
-= link_to "Add Patient", new_facility_patient_path
+= link_to "Add Patient", new_facility_patient_path(@facility)
 
 / def age
 /   now = Time.now.utc

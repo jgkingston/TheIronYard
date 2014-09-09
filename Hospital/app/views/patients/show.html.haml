@@ -1,4 +1,4 @@
-%div
+%div.container
   %h2
     = @facility.name
 
@@ -20,31 +20,43 @@
   %hr/
 
 %div
-  %h4
-    Patient Status:
-    = @patient.workflow_state
-    %br
+  %h4.patient-status= "Patient Status: #{@patient.workflow_state.capitalize}"
+  %br
 
-  Available Actions:
 
-  %ul.list-inline
+  %ul.list-inline.workflow-options{ ajax_path: transition_facility_patient_path(@facility, @patient) }
+
+    / %li
+    /   - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "checkup"
+    /     = link_to "Examine", transition_facility_patient_path(@facility, @patient, event: 'examine')
+    / %li
+    /   - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "xray"
+    /     = link_to "Order X-Rays", transition_facility_patient_path(@facility, @patient, event: 'scan')
+    / %li
+    /   - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "surgery"
+    /     = link_to "Perform Surgery", transition_facility_patient_path(@facility, @patient, event: 'operate')
+    / %li
+    /   - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "waiting"
+    /     = link_to "Discharge", transition_facility_patient_path(@facility, @patient, event: 'pay')
+    / %li
+    /   - if @patient.workflow_state == 'billing' || @patient.workflow_state == 'waiting'
+    /     = link_to "Leave", transition_facility_patient_path(@facility, @patient, event: 'leave')
 
     %li
       - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "checkup"
-        = link_to "Examine", transition_facility_patient_path(@facility, @patient, event: 'examine')
+        = link_to "Examine", "javascript:void(0)", event: 'examine', class: 'btn btn-primary'
     %li
       - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "xray"
-        = link_to "Order X-Rays", transition_facility_patient_path(@facility, @patient, event: 'scan')
+        = link_to "Order X-Rays", "javascript:void(0)", event: 'scan', class: 'btn btn-primary'
     %li
       - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "surgery"
-        = link_to "Perform Surgery", transition_facility_patient_path(@facility, @patient, event: 'operate')
+        = link_to "Perform Surgery", "javascript:void(0)", event: 'operate', class: 'btn btn-primary'
     %li
       - if @patient.workflow_state != 'billing' && @patient.workflow_state != 'discharge' && @patient.workflow_state != "waiting"
-        = link_to "Discharge", transition_facility_patient_path(@facility, @patient, event: 'pay')
+        = link_to "Discharge", "javascript:void(0)", event: 'pay', class: 'btn btn-primary'
     %li
       - if @patient.workflow_state == 'billing' || @patient.workflow_state == 'waiting'
-        = link_to "Leave", transition_facility_patient_path(@facility, @patient, event: 'leave')
-
+        = link_to "Leave", "javascript:void(0)", event: 'leave', class: 'btn btn-primary'
 
 %div
   %table.table
